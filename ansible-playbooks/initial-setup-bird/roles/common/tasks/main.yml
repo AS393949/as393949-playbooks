@@ -1,0 +1,11 @@
+---
+# This role will install all build dependencies for compilation of BIRD
+
+- name: Install all build dependencies for the compilation of BIRD
+  apt: pkg={{ item }} state=latest
+  with_items:
+     - build-essential
+	 - libreadline-dev
+	 - libncurses5-dev
+	 - bison
+	 - flex
