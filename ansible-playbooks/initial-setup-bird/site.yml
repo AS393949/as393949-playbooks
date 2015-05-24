@@ -3,13 +3,13 @@
 - name: install build dependencies for BIRD compilation
   hosts: all
   user: root
-  
+
   roles:
     - common
-	
+
 - name: download and compile BIRD
   hosts: bgp-unsetup
   user: root
-  
+
   roles:
     - bird-install
