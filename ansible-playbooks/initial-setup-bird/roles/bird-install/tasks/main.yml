@@ -11,7 +11,7 @@
   unarchive: src=/src/bird-1.5.0.tar.gz dest=/src/bird-1.5.0 copy=no
 
 - name: Compile BIRD source for v4
-  shell: ./configure && make install clean chdir=/src/bird-1.5.0
+  shell: /src/bird-1.5.0/configure && make install clean chdir=/src/bird-1.5.0
 
 - name: Compile BIRD source for v6
-  shell: ./configure --enable-ipv6 && make install clean chdir=/src/bird-1.5.0
+  shell: /src/bird-1.5.0/configure --enable-ipv6 && make install clean chdir=/src/bird-1.5.0
