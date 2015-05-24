@@ -2,7 +2,7 @@
 # This role will compile and install BIRD
 
 - name: Create compilation and source directory
-  file: src=/src state=directory
+  file: path=/src state=directory
 
 - name: Download BIRD source tarball
   get_url: url=ftp://bird.network.cz/pub/bird/bird-1.5.0.tar.gz dest=/src/bird-1.5.0.tar.gz
