@@ -2,16 +2,16 @@
 # This role will compile and install BIRD
 
 - name: Create compilation and source directory
-  file: path=/src/bird-1.6.2 state=directory
+  file: path=/src/bird-1.6.3 state=directory
 
 - name: Download BIRD source tarball
-  get_url: url=ftp://bird.network.cz/pub/bird/bird-1.6.2.tar.gz dest=/src/bird-1.6.2.tar.gz
+  get_url: url=ftp://bird.network.cz/pub/bird/bird-1.6.3.tar.gz dest=/src/bird-1.6.3.tar.gz
 
 - name: Unarchive BIRD source tarball
-  unarchive: src=/src/bird-1.6.2.tar.gz dest=/src/ copy=no
+  unarchive: src=/src/bird-1.6.3.tar.gz dest=/src/ copy=no
 
 - name: Compile BIRD source for v4
-  shell: ./configure && make install clean chdir=/src/bird-1.6.2
+  shell: ./configure && make install clean chdir=/src/bird-1.6.3
 
 - name: Compile BIRD source for v6
-  shell: ./configure --enable-ipv6 && make install clean chdir=/src/bird-1.6.2
+  shell: ./configure --enable-ipv6 && make install clean chdir=/src/bird-1.6.3
