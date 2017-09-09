@@ -1,0 +1,12 @@
+[Unit]
+Description=BIRD v6
+After=network.target
+
+[Service]
+Type=simple
+ExecStartPre=/bin/mkdir -p /run/bird
+ExecStart=/usr/local/sbin/bird6 -P /run/bird/bird6.pid
+ExecStop=/usr/local/sbin/birdc6 down
+ExecReload=/usr/local/sbin/birdc6 reload all
+Restart=on-failure
+PIDFile=/run/bird/bird6.pid
