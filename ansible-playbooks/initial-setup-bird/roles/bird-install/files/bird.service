@@ -1,0 +1,12 @@
+[Unit]
+Description=BIRD v4
+After=network.target
+
+[Service]
+Type=simple
+ExecStartPre=/bin/mkdir -p /run/bird
+ExecStart=/usr/local/sbin/bird -P /run/bird/bird4.pid
+ExecStop=/usr/local/sbin/birdc down
+ExecReload=/usr/local/sbin/birdc reload all
+Restart=on-failure
+PIDFile=/run/bird/bird4.pid
