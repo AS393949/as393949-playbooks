@@ -15,3 +15,16 @@
 
 - name: Compile BIRD source for v6
   shell: ./configure --enable-ipv6 && make install clean chdir=/src/bird-1.6.3
+  
+- name: Copy BIRDv4 systemd service file
+  copy: src=bird.service dest=/etc/systemd/system/bird.service backup=yes
+
+- name: Copy BIRDv6 systemd service file
+  copy: src=bird6.service dest=/etc/systemd/system/bird6.service backup=yes
+  
+- name: Ensure BIRD services are started on boot
+  service: name={{ item }} enabled=yes
+  with_items:
+     - bird
+     - bird6
+
