@@ -23,7 +23,7 @@
         - ssl_certificate "/etc/ssl/letsencrypt/as393949.net.crt"
         - ssl_certificate_key "/etc/ssl/letsencrypt/as393949.net.pem"
         - ssl_stapling on
-        - resolver 8.8.8.8 valid=300s
+        - resolver [::1] valid=300s
         - add_header Strict-Transport-Security max-age=31536000
       aurigaplatform.pw.http:
         - listen *:80
@@ -51,7 +51,7 @@
         - ssl_certificate "/etc/ssl/letsencrypt/aurigaplatform.pw.crt"
         - ssl_certificate_key "/etc/ssl/letsencrypt/aurigaplatform.pw.pem"
         - ssl_stapling on
-        - resolver 8.8.8.8 valid=300s
+        - resolver [::1] valid=300s
         - client_max_body_size 10M
         - add_header Strict-Transport-Security max-age=31536000
         - location /.well-known/acme-challenge/ {
