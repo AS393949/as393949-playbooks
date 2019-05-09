@@ -1,30 +1,14 @@
 ---
-# This role will compile and install BIRD
+# This role will install BIRD
 
-- name: Create compilation and source directory
-  file: path=/src/bird-1.6.3 state=directory
+- name: Make sure all packages are up to date before we install anything
+  apt: update_cache=yes upgrade=safe
 
-- name: Download BIRD source tarball
-  get_url: url=ftp://bird.network.cz/pub/bird/bird-1.6.3.tar.gz dest=/src/bird-1.6.3.tar.gz
+- name: Install BIRD package
+  apt: name=bird state=latest
 
-- name: Unarchive BIRD source tarball
-  unarchive: src=/src/bird-1.6.3.tar.gz dest=/src/ copy=no
-
-- name: Compile BIRD source for v4
-  shell: ./configure && make install clean chdir=/src/bird-1.6.3
-
-- name: Compile BIRD source for v6
-  shell: ./configure --enable-ipv6 && make install clean chdir=/src/bird-1.6.3
-  
-- name: Copy BIRDv4 systemd service file
-  copy: src=bird.service dest=/etc/systemd/system/bird.service backup=yes
-
-- name: Copy BIRDv6 systemd service file
-  copy: src=bird6.service dest=/etc/systemd/system/bird6.service backup=yes
-  
 - name: Ensure BIRD services are started on boot
   service: name={{ item }} enabled=yes
   with_items:
      - bird
      - bird6
-
